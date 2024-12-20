@@ -5,8 +5,8 @@ const dbConnection = new DataSource({
   host: "localhost",
   port: 3306,
   username: "root",
-  password: "root1234",
-  database: "books2",
+  password: "root",
+  database: "books",
 });
 
 export default dbConnection;

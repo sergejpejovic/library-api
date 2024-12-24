@@ -15,6 +15,7 @@ const app = express();
 const router = express.Router();
 
 // Da apk zna koji router da koristi
+app.use(express.json());
 app.use("/books", booksRouter);
 
 // PROGRAMIRANJE SERVERA

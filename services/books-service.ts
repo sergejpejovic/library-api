@@ -8,13 +8,44 @@ const getAllBooks = async () => {
   data.forEach((book: any) => {
     result.push({
       id: book.id,
-      title: book.title,
-      description: book.description,
-      category: book.category,
-      available: book.availability,
+      naslov: book.naslov,
+      pismoId: book.pismo_id,
+      jezikId: book.jezik_id,
+      formatId: book.format_id,
       published: book.published,
-      updated: book.updated,
-      created: book.created,
+      povezId: book.povez_id,
+      izdavacId: book.izdavac_id,
+      datumIzdavanja: book.datum_izdavanja,
+      ISBN: book.ISBN,
+      ukupnoPrimjeraka: book.ukupno_primjeraka,
+      izdatoPrimjeraka: book.izdato_primjeraka,
+      rezervisanoPrimjeraka: book.rezervisano_primjeraka,
+      sadrzaj: book.sadrzaj,
+    });
+  });
+  return result;
+};
+
+const getAllBooksDetailed = async () => {
+  const data = await booksRepository.getAllBooksDetailed();
+  const result: any = [];
+
+  data.forEach((knjiga: any) => {
+    result.push({
+      id: knjiga.id,
+      naslov: knjiga.naslov,
+      brojStrana: knjiga.broj_strana,
+      pismo: knjiga.Pismo,
+      jezik: knjiga.Jezik,
+      format: knjiga.Format,
+      povez: knjiga.Povez,
+      izdavac: knjiga.izdavac,
+      datumIzdavanja: knjiga.datum_izdavanja,
+      ISBN: knjiga.ISBN,
+      ukupnoPrimjeraka: knjiga.ukupno_primjeraka,
+      izdatoPrimjeraka: knjiga.izdato_primjeraka,
+      rezervisanoPrimjeraka: knjiga.rezervisano_primjeraka,
+      sadrzaj: knjiga.sadrzaj,
     });
   });
   return result;
@@ -58,4 +89,5 @@ export default {
   createNewBook,
   updateBook,
   deleteBook,
+  getAllBooksDetailed,
 };

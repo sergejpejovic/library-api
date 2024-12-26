@@ -5,6 +5,7 @@ import express from "express";
 import booksRouter from "./routing/books-routing";
 import "reflect-metadata";
 import dbConnection from "./common/db-connection";
+import authorsRouter from "./routing/author-routing";
 
 // fs.writeFileSync("text.txt", "Testiramo app.ts");
 
@@ -17,6 +18,7 @@ const router = express.Router();
 // Da apk zna koji router da koristi
 app.use(express.json());
 app.use("/books", booksRouter);
+app.use("/authors", authorsRouter);
 
 // PROGRAMIRANJE SERVERA
 app.listen(4000, () => {

@@ -6,6 +6,11 @@ const getAllBooks = async (req: Request, res: Response) => {
   res.send(data);
 };
 
+const getAllBooksDetailed = async (req: Request, res: Response) => {
+  const data = await booksService.getAllBooksDetailed();
+  res.send(data);
+};
+
 const getBookById = async (req: Request, res: Response) => {
   const id = req.params.id;
   const data = await booksService.getBookById(parseInt(id));
@@ -35,4 +40,5 @@ export default {
   createNewBook,
   updateBook,
   deleteBook,
+  getAllBooksDetailed,
 };

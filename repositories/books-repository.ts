@@ -38,15 +38,22 @@ const getBookById = async (id: number) => {
 const createNewBook = async (book: any) => {
   try {
     const data = await dbConnection.query(
-      `INSERT INTO Knjiga (title, author, category, description, availability, published, updated, created)
-           VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())`,
+      `INSERT INTO Knjiga (naslov, broj_strana, pismo_id, jezik_id, format_id, povez_id, izdavac_id, datum_izdavanja, ISBN, 
+ukupno_primjeraka, izdato_primjeraka, rezervisano_primjeraka, sadrzaj) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        book.title,
-        book.author,
-        book.category,
-        book.description,
-        book.available,
-        book.published,
+        book.naslov,
+        book.brojStrana,
+        book.pismoId,
+        book.jezikId,
+        book.formatId,
+        book.povezId,
+        book.izdavacId,
+        book.datumIzdavanja,
+        book.ISBN,
+        book.ukupnoPrimjeraka,
+        book.izdatoPrimjeraka,
+        book.rezervisanoPrimjeraka,
+        book.sadrzaj,
       ]
     );
     return { success: true, data };
@@ -55,17 +62,26 @@ const createNewBook = async (book: any) => {
   }
 };
 
-const updateBook = async (id: number, book: any) => {
+const updateBook = async (id: Number, book: any) => {
   try {
-    const data = await dbConnection.query(
-      `UPDATE Knjiga SET title = ?, author = ?, category = ?, description = ?, availability = ?, published = ? WHERE id = ?`,
+    const data = dbConnection.query(
+      `UPDATE Knjiga SET naslov = ?, broj_strana = ?, pismo_id = ?, 
+          jezik_id = ? , format_id = ?, povez_id = ?, izdavac_id = ?, datum_izdavanja = ?, ISBN = ?, ukupno_primjeraka = ?,
+          izdato_primjeraka = ?, rezervisano_primjeraka = ?, sadrzaj = ?  WHERE id = ?`,
       [
-        book.title,
-        book.author,
-        book.category,
-        book.description,
-        book.available,
-        book.published,
+        book.naslov,
+        book.brojStrana,
+        book.pismoId,
+        book.jezikId,
+        book.formatId,
+        book.povezId,
+        book.izdavacId,
+        book.datumIzdavanja,
+        book.ISBN,
+        book.ukupnoPrimjeraka,
+        book.izdatoPrimjeraka,
+        book.rezervisanoPrimjeraka,
+        book.sadrzaj,
         id,
       ]
     );

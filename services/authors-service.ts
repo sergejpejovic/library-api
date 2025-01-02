@@ -28,4 +28,31 @@ const getAuthorById = async (id: number) => {
   return null;
 };
 
-export default { getAllAuthors, getAuthorById };
+const createAuthor = async (author: any) => {
+  const data = await authorsRepository.createAuthor(author);
+  return data;
+};
+
+const updateAuthor = async (author: any) => {
+  const data = await authorsRepository.updateAuthor(author);
+  return data;
+};
+
+const deleteAuthor = async (authorId: number) => {
+  const data = await authorsRepository.deleteAuthor(authorId);
+  return data;
+};
+
+const getBooksByAuthorId = async (authorId: number) => {
+  const data = await authorsRepository.getBooksByAuthorId(authorId);
+  return data;
+};
+
+export default {
+  getAllAuthors,
+  getAuthorById,
+  createAuthor,
+  updateAuthor,
+  deleteAuthor,
+  getBooksByAuthorId,
+};

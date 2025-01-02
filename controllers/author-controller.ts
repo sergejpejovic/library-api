@@ -12,4 +12,33 @@ const getAuthorById = async (req: Request, res: Response) => {
   res.send(data);
 };
 
-export default { getAllAuthors, getAuthorById };
+const createAuthor = async (req: Request, res: Response) => {
+  const data = await authorsService.createAuthor(req.body);
+  res.send(data);
+};
+
+const updateAuthor = async (req: Request, res: Response) => {
+  const data = await authorsService.updateAuthor(req.body);
+  res.send(data);
+};
+
+const deleteAuthor = async (req: Request, res: Response) => {
+  const { authorId } = req.body;
+  const data = await authorsService.deleteAuthor(authorId);
+  res.send(data);
+};
+
+const getBooksByAuthorId = async (req: Request, res: Response) => {
+  const { authorId } = req.body;
+  const data = await authorsService.getBooksByAuthorId(authorId);
+  res.send(data);
+};
+
+export default {
+  getAllAuthors,
+  getAuthorById,
+  createAuthor,
+  updateAuthor,
+  deleteAuthor,
+  getBooksByAuthorId,
+};

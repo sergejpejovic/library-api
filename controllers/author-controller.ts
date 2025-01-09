@@ -23,8 +23,8 @@ const updateAuthor = async (req: Request, res: Response) => {
 };
 
 const deleteAuthor = async (req: Request, res: Response) => {
-  const { authorId } = req.body;
-  const data = await authorsService.deleteAuthor(authorId);
+  const authorId = req.params.id;
+  const data = await authorsService.deleteAuthor(parseInt(authorId));
   res.send(data);
 };
 

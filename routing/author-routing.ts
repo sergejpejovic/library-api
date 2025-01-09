@@ -8,13 +8,12 @@ authorsRouter
   .get(authorController.getAllAuthors)
   .post(authorController.createAuthor);
 
-authorsRouter.route("/:id").get(authorController.getAuthorById);
-
-authorsRouter.route("/:id/books").get(authorController.getBooksByAuthorId);
-
 authorsRouter
-  .route("/:imePrezime")
+  .route("/:id")
+  .get(authorController.getAuthorById)
   .put(authorController.updateAuthor)
   .delete(authorController.deleteAuthor);
+
+authorsRouter.route("/:id/books").get(authorController.getBooksByAuthorId);
 
 export default authorsRouter;

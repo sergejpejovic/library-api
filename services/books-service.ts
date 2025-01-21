@@ -56,13 +56,20 @@ const getBookById = async (id: number) => {
   if (data && data.length > 0) {
     return {
       id: data[0].id,
-      title: data[0].title,
-      description: data[0].description,
-      category: data[0].category,
-      available: data[0].availability,
+      naslov: data[0].naslov,
+      brojStrana: data[0].broj_strana,
+      pismoId: data[0].pismo_id,
+      jezikId: data[0].jezik_id,
+      formatId: data[0].format_id,
       published: data[0].published,
-      updated: data[0].updated,
-      created: data[0].created,
+      povezId: data[0].povez_id,
+      izdavacId: data[0].izdavac_id,
+      datumIzdavanja: data[0].datum_izdavanja,
+      ISBN: data[0].ISBN,
+      ukupnoPrimjeraka: data[0].ukupno_primjeraka,
+      izdatoPrimjeraka: data[0].izdato_primjeraka,
+      rezervisanoPrimjeraka: data[0].rezervisano_primjeraka,
+      sadrzaj: data[0].sadrzaj,
     };
   }
   return null;

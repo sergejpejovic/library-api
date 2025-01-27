@@ -7,6 +7,7 @@ import "reflect-metadata";
 import dbConnection from "./common/db-connection";
 import authorsRouter from "./routing/author-routing";
 import cors from "cors";
+import additionalRouter from "./routing/additional-routing";
 
 // fs.writeFileSync("text.txt", "Testiramo app.ts");
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/books", booksRouter);
 app.use("/authors", authorsRouter);
+app.use("/additionals", additionalRouter);
 
 // PROGRAMIRANJE SERVERA
 app.listen(4000, () => {

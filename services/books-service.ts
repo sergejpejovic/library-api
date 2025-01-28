@@ -24,6 +24,7 @@ const getAllBooks = async () => {
       izdatoPrimjeraka: book.izdato_primjeraka,
       rezervisanoPrimjeraka: book.rezervisano_primjeraka,
       sadrzaj: book.sadrzaj,
+      imagePath: book.image_path,
     });
   });
   return result;
@@ -53,6 +54,7 @@ const getAllBooksDetailed = async () => {
       izdatoPrimjeraka: knjiga.izdato_primjeraka,
       rezervisanoPrimjeraka: knjiga.rezervisano_primjeraka,
       sadrzaj: knjiga.sadrzaj,
+      imagePath: knjiga.image_path,
     });
   });
   return result;
@@ -76,6 +78,7 @@ const getBookById = async (id: Number) => {
       izdatoPrimjeraka: data[0].izdato_primjeraka,
       rezervisanoPrimjeraka: data[0].rezervisano_primjeraka,
       sadrzaj: data[0].sadrzaj,
+      imagePath: data[0].image_path,
     };
   }
   return null;

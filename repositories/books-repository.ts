@@ -15,7 +15,7 @@ const getAllBooksDetailed = async () => {
       await dbConnection.query(`SELECT k.id, k.naslov, k.broj_strana, p.naziv AS Pismo, j.naziv AS Jezik,
           f.naziv AS Format, pv.naziv AS Povez, i.naziv AS Izdavac, k.datum_izdavanja,
           k.ISBN, k.ukupno_primjeraka, k.izdato_primjeraka, k.rezervisano_primjeraka,
-        k.sadrzaj FROM Knjiga k 
+        k.sadrzaj, k.image_path FROM Knjiga k 
         LEFT JOIN Pismo p ON k.pismo_id = p.id
         LEFT JOIN Jezik j ON k.jezik_id = j.id
         LEFT JOIN Format f ON k.format_id = f.id
@@ -42,7 +42,7 @@ const createNewBook = async (book: any) => {
   try {
     const data = await dbConnection.query(
       `INSERT INTO Knjiga (naslov, broj_strana, pismo_id, jezik_id, format_id, povez_id, izdavac_id, datum_izdavanja, ISBN, 
-ukupno_primjeraka, izdato_primjeraka, rezervisano_primjeraka, sadrzaj) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+ukupno_primjeraka, izdato_primjeraka, rezervisano_primjeraka, sadrzaj, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         book.naslov,
         book.brojStrana,
@@ -57,6 +57,7 @@ ukupno_primjeraka, izdato_primjeraka, rezervisano_primjeraka, sadrzaj) VALUES (?
         book.izdatoPrimjeraka,
         book.rezervisanoPrimjeraka,
         book.sadrzaj,
+        book.imagePath,
       ]
     );
     return { success: true, data };
@@ -70,7 +71,7 @@ const updateBook = async (id: Number, book: any) => {
     const data = dbConnection.query(
       `UPDATE Knjiga SET naslov = ?, broj_strana = ?, pismo_id = ?, 
             jezik_id = ? , format_id = ?, povez_id = ?, izdavac_id = ?, datum_izdavanja = ?, ISBN = ?, ukupno_primjeraka = ?,
-            izdato_primjeraka = ?, rezervisano_primjeraka = ?, sadrzaj = ?  WHERE id = ?`,
+            izdato_primjeraka = ?, rezervisano_primjeraka = ?, sadrzaj = ?, image_path = ?  WHERE id = ?`,
       [
         book.naslov,
         book.brojStrana,
@@ -85,6 +86,7 @@ const updateBook = async (id: Number, book: any) => {
         book.izdatoPrimjeraka,
         book.rezervisanoPrimjeraka,
         book.sadrzaj,
+        book.imagePath,
         id,
       ]
     );

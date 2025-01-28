@@ -9,7 +9,7 @@ additionalRouter.route("/jezici").get(additionalController.getLanguages);
 
 additionalRouter.route("/pismo").get(additionalController.getPismo);
 
-additionalRouter.route("/povez").get(additionalController.getPovez);
+additionalRouter.route("/povezi").get(additionalController.getPovez);
 
 additionalRouter.route("/izdavaci").get(additionalController.getPublishers);
 

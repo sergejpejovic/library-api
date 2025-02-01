@@ -10,6 +10,7 @@ import cors from "cors";
 import additionalRouter from "./routing/additional-routing";
 import path from "path";
 import fileUploadRouter from "./common/file-upload";
+import userRouter from "./routing/user-routing";
 
 // fs.writeFileSync("text.txt", "Testiramo app.ts");
 
@@ -29,6 +30,7 @@ app.use("/books", booksRouter);
 app.use("/authors", authorsRouter);
 app.use("/additionals", additionalRouter);
 app.use(fileUploadRouter);
+app.use(userRouter);
 
 // PROGRAMIRANJE SERVERA
 app.listen(4000, () => {

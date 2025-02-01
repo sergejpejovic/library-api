@@ -1,11 +1,12 @@
 import express, { Request, Response } from "express";
 import booksController from "../controllers/books-controller";
+import authMiddleWare from "../middleware/auth-middleware";
 
 const booksRouter = express.Router();
 
 booksRouter
   .route("/")
-  .get(booksController.getAllBooksDetailed)
+  .get(authMiddleWare, booksController.getAllBooksDetailed)
   .post(booksController.createNewBook);
 
 booksRouter

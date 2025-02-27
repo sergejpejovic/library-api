@@ -6,13 +6,13 @@ const booksRouter = express.Router();
 
 booksRouter
   .route("/")
-  .get(authMiddleWare, booksController.getAllBooksDetailed)
-  .post(booksController.createNewBook);
+  .get(booksController.getAllBooksDetailed)
+  .post(authMiddleWare, booksController.createNewBook);
 
 booksRouter
   .route("/:id")
   .get(booksController.getBookById)
-  .put(booksController.updateBook)
-  .delete(booksController.deleteBook);
+  .put(authMiddleWare, booksController.updateBook)
+  .delete(authMiddleWare, booksController.deleteBook);
 
 export default booksRouter;

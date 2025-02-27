@@ -26,9 +26,9 @@ const getAuthorById = async (id: number) => {
 const createAuthor = async (author: any) => {
   try {
     const data = await dbConnection.query(
-      `INSERT INTO Autor (ime_prezime, biografija)
-      VALUES (?, ?)`,
-      [author.imePrezime, author.biografija]
+      `INSERT INTO Autor (ime_prezime, biografija, imagePath)
+      VALUES (?, ?, ?)`,
+      [author.imePrezime, author.biografija, author.imagePath]
     );
     return { success: true, data };
   } catch (error: any) {
@@ -41,9 +41,9 @@ const updateAuthor = async (author: any) => {
   try {
     const data = await dbConnection.query(
       `
-      UPDATE Autor SET ime_prezime = ?, biografija = ? WHERE id = ?
+      UPDATE Autor SET ime_prezime = ?, biografija = ?, imagePath =? WHERE id = ?
       `,
-      [author.imePrezime, author.biografija, author.id]
+      [author.imePrezime, author.biografija, author.imagePath, author.id]
     );
     return { success: true, data };
   } catch (error: any) {

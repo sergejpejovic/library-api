@@ -29,8 +29,8 @@ const deleteAuthor = async (req: Request, res: Response) => {
 };
 
 const getBooksByAuthorId = async (req: Request, res: Response) => {
-  const { authorId } = req.body;
-  const data = await authorsService.getBooksByAuthorId(authorId);
+  const authorId = req.params.id;
+  const data = await authorsService.getBooksByAuthorId(parseInt(authorId));
   res.send(data);
 };
 

@@ -10,6 +10,7 @@ const getAllAuthors = async () => {
       id: author.id,
       imePrezime: author.ime_prezime,
       biografija: author.biografija,
+      imagePath: author.imagePath,
     });
   });
 
@@ -23,6 +24,7 @@ const getAuthorById = async (id: number) => {
       id: data[0].id,
       imePrezime: data[0].ime_prezime,
       biografija: data[0].biografija,
+      imagePath: data[0].imagePath,
     };
   }
   return null;
@@ -45,7 +47,28 @@ const deleteAuthor = async (authorId: number) => {
 
 const getBooksByAuthorId = async (authorId: number) => {
   const data = await authorsRepository.getBooksByAuthorId(authorId);
-  return data;
+  const result: any = [];
+
+  data.forEach((knjiga: any) => {
+    result.push({
+      id: knjiga.id,
+      naslov: knjiga.naslov,
+      brojStrana: knjiga.broj_strana,
+      pismo: knjiga.Pismo,
+      jezik: knjiga.Jezik,
+      format: knjiga.Format,
+      povez: knjiga.Povez,
+      izdavac: knjiga.Izdavac,
+      datumIzdavanja: knjiga.datum_izdavanja.toISOString().split("T")[0],
+      ISBN: knjiga.ISBN,
+      ukupnoPrimjeraka: knjiga.ukupno_primjeraka,
+      izdatoPrimjeraka: knjiga.izdato_primjeraka,
+      rezervisanoPrimjeraka: knjiga.rezervisano_primjeraka,
+      sadrzaj: knjiga.sadrzaj,
+      imagePath: knjiga.image_path,
+    });
+  });
+  return result;
 };
 
 export default {
